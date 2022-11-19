@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Oswald";
+  src: url("../fonts/Oswald/Oswald-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "LatoRegular";
+  src: url("../fonts/Lato/Lato-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "JosefinSans";
+  src: url("../fonts/Josefin_Sans/JosefinSans-VariableFont_wght.ttf")
+    format("truetype");
+}

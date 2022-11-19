@@ -1,0 +1,189 @@
+<html style="height: 100%; width: 100%;">
+<head>
+    <title>The Disinformation Dilema</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="fonts/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Two+Tone" rel="stylesheet">
+</head>
+<body style="height: 100%; width: 100%;">
+  <div id="app" style="height: 100%; width: 100%;">
+    <div id="header">
+      <h1>The Disinformation Dilema</h1>
+      <h2>The truth seeking game.</h2>
+      <a>Continue</a>
+    </div>
+    <div style="height: 20px; background-color: black;"></div>
+    <div class="content">
+      <div class="characters" v-for="character in characters">
+        <div class="character-title">
+          <span class="material-icons-two-tone md-48" style="font-size: 150px">
+            {{ character.icon }}
+          </span>
+          <h3 style='font-family: "JosefinSans"; font-weight: 400;'>{{ character.title }}</h3>
+        </div>
+        <div class="character-desc">
+          <p><span style="color: #591f1f; font-weight: 600;">Your Goal: </span>{{ character.goal }}</p>
+          <p><span style="color: #591f1f; font-weight: 600;">The First 60 Seconds: </span>{{ character.first60 }}</p>
+          <p><span style="color: #591f1f; font-weight: 600;">After: </span>{{ character.after60 }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="content" style="background-color: black; color: white">
+      <h1>Game Modes</h1>
+      <div class="gamemodes" v-for="mode in gamemodes">
+        <div class="mode">
+          <i class="material-icons" style="font-size: 150px; color: #fff">
+            {{ mode.icon }}
+          </i>
+          <p><span style="color: #591f1f; font-weight: 600;"></span>{{ mode.title }}</p>
+          <p><span style="color: #591f1f; font-weight: 600;"> </span>{{ mode.description }}</p>
+          <p><span style="color: #591f1f; font-weight: 600;"></span>{{ mode.pricing }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<style>
+  #header {
+    background-color: #591f1f;
+    opacity: 1;
+    height: 80%; width: 100%;
+    background-image:  linear-gradient(30deg, #dc0000 12%, transparent 12.5%, transparent 87%, #dc0000 87.5%, #dc0000), linear-gradient(150deg, #dc0000 12%, transparent 12.5%, transparent 87%, #dc0000 87.5%, #dc0000), linear-gradient(30deg, #dc0000 12%, transparent 12.5%, transparent 87%, #dc0000 87.5%, #dc0000), linear-gradient(150deg, #dc0000 12%, transparent 12.5%, transparent 87%, #dc0000 87.5%, #dc0000), linear-gradient(60deg, #dc000077 25%, transparent 25.5%, transparent 75%, #dc000077 75%, #dc000077), linear-gradient(60deg, #dc000077 25%, transparent 25.5%, transparent 75%, #dc000077 75%, #dc000077);
+    background-size: 72px 126px;
+    background-position: 0 0, 0 0, 36px 63px, 36px 63px, 0 0, 36px 63px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+  }
+
+  #header h1 {
+    font-family: "JosefinSans";
+    font-weight: 800;
+    font-size: 4rem;
+  }
+  #header h2 {
+    font-family: "JosefinSans";
+    font-weight: 400;
+    font-size: 2rem;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .characters {
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    max-width: 800px;
+  }
+
+  .characters:nth-child(even) {
+    background-color: #591f1f0f;
+    border-radius: 10px;
+  }
+
+  .character-title {
+      flex: 1;
+      margin: 10;
+      padding: 10;
+      text-align: center;
+  }
+  .character-desc {
+      flex: 2;
+      margin: 10;
+      padding: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  }
+
+  @media screen and (max-width: 480px) {
+    .characters {
+      flex-direction: column;
+    }
+  }
+
+</style>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+          characters: [
+            {
+              "icon": "person_search",
+              "title": "The Researcher",
+              "goal": "Find [The Truth] to get one point.",
+              "first60": "Grab a drink - you might need it. If you recognize the article, start a new round.",
+              "after60": "You are the only one who can ask questions."
+            },
+            {
+              "icon": "how_to_reg",
+              "title": "The Truth",
+              "goal": "Make [The Researcher] believe you are the truth to get one point.",
+              "first60": "Read the Wiki article to the best of your ability.",
+              "after60": "You must answer researcher's questions. You can't lie."
+            },
+            {
+              "icon": "groups",
+              "title": "The Noise",
+              "goal": "Make [The Researcher] believe you are the truth to get two points.",
+              "first60": "Using the title on screen, come up with the best lie you can about what the article is.",
+              "after60": "You must answer researcher's questions. You must lie."
+            }
+          ],
+          gamemodes: [
+            {
+              "icon": "discord",
+              "title": "",
+              "description": "",
+              "pricing": ""
+            },
+            {
+              "icon": "sms",
+              "title": "",
+              "description": "",
+              "pricing": ""
+            }
+          ]
+        }
+    });
+
+    /*
+    async function testThingy() {
+      str = JSON.stringify({
+        'firstName': 'Fred',
+        'lastName': 'Flintstone'
+      })
+
+      const configHeaders = {
+        "content-type": "application/json",
+        "Accept": "application/json"
+      };
+      result = await axios({
+          method: 'post',
+          url: '/test',
+          headers: configHeaders,
+          data: str
+      });
+
+      console.log(result)
+      console.log(result.data)
+      
+    }
+    */
+</script>
+</html>
